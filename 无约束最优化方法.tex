@@ -1,0 +1,123 @@
+\section{无约束最优化方法}
+\begin{enumerate}
+    \item 设$\displaystyle f(x)=\frac{3}{2}x_1^2+\frac{1}{2}x_2^2-x_1x_2-2x_1$，设初始点$x^{(0)}=(-2,4)^\mathrm{T}$. 试用最速下降法和牛顿法极小化$f(x)$.\\
+    \sol 最速下降法：$\nabla f(x)=(3x_1-x_2-2,x_2-x_1)^\mathrm{T}$，则
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            $k$ & $\nabla f(x^{(k)})$ & $d^{(k)}$ & $\alpha_k$ & $x^{(k+1)}$ \\ \hline
+            0 & $(-12,6)^\mathrm{T}$ & $(12,-6)^\mathrm{T}$ & $\displaystyle\frac{5}{17}$ & $\displaystyle\left(\frac{26}{17},\frac{38}{17}\right)^\mathrm{T}$ \\ \hline
+            1 & $\displaystyle\left(\frac{6}{17},\frac{12}{17}\right)^\mathrm{T}$ & $\displaystyle\left(-\frac{6}{17},-\frac{12}{17}\right)^\mathrm{T}$ & $\displaystyle\frac{5}{3}$ & $\displaystyle\left(\frac{17-1}{17},\frac{17+1}{17}\right)^\mathrm{T}$ \\ \hline
+            2 & $\displaystyle\left(-\frac{4}{17},\frac{2}{17}\right)^\mathrm{T}$ & $\displaystyle\left(\frac{4}{17},-\frac{2}{17}\right)^\mathrm{T}$ & $\displaystyle\frac{5}{17}$ & $\displaystyle\left(\frac{17^2+3}{17^2},\frac{17^2+7}{17^2}\right)^\mathrm{T}$ \\ \hline
+            3 & $\displaystyle\left(\frac{2}{289},\frac{4}{289}\right)^\mathrm{T}$ & $\displaystyle\left(-\frac{2}{289},-\frac{4}{289}\right)^\mathrm{T}$ & $\cdots$ & $\displaystyle\left(\frac{3\times 17^2-1}{3 \times 17^2},\frac{3 \times 17^2+1}{3 \times 17^2}\right)^\mathrm{T}$ \\ \hline
+            $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\ \hline
+        \end{tabular}
+    \end{table}
+    逐步迭代，取迭代次数为无穷大时，极小值点$x^*=(1,1)^\mathrm{T},\min f(x)=-1$. 最后，通过最优性条件验证该点是极小值点：
+    \[\nabla f(x^*)=(0,0)^\mathrm{T}, \quad G=\left(\begin{array}{cc}
+        \begin{matrix}
+            3 & -1 \\ -1 & 1
+        \end{matrix}
+    \end{array}\right)\]
+    牛顿法：由最速下降法知：$G$是正定的，且$\displaystyle G^{-1}=\left(\begin{array}{cc}
+        \begin{matrix}
+            0.5 & 0.5 \\ 0.5 & 1.5
+        \end{matrix}
+    \end{array}\right)$.\\
+    迭代：$x^{(1)}=x^{(0)}-G(x^{(0)})^{-1} \nabla f(x^{(0)})=(1,1)^\mathrm{T}$,\\
+    计算得：$\nabla f(x^{(1)})=(0,0)^\mathrm{T}$. 由最优性条件可知，迭代终止，得最优解：$x^*=x^{(1)}=(0,0)^\mathrm{T}$.\\
+    若均各迭代一步，牛顿法选用带步长因子的，则解答如下：\\
+    将$f(x)$写成$\displaystyle f(x) = \frac{1}{2}x^{\mathrm{T}}Gx-b^{\mathrm{T}}x$的形式，有
+        \[G=\begin{pmatrix}
+            3 & -1\\-1 & 1
+        \end{pmatrix},b = \begin{pmatrix}
+            2\\0
+        \end{pmatrix}\]
+        最速下降法：设$x^{(0)}=(-2,4)^{\mathrm{T}}$，则$g_0 = Gx^{(0)}-b=(-12,6)^{\mathrm{T}}$，$d_0 = -g_0 = (12,-6)^{\mathrm{T}}$，$\displaystyle\alpha_0 = -\frac{g_0^{\mathrm{T}}d_0}{d_0^{\mathrm{T}}Gd_0} = \frac{5}{17}$，$\displaystyle x^{(1)}=x^{(0)}+\alpha_0 d_0 = \left(\frac{26}{17},\frac{38}{17}\right)^{\mathrm{T}}$.\\
+        牛顿法：设$x^{(0)}=(-2,4)^{\mathrm{T}}$，则$g_0 = Gx^{(0)}-b=(-12,6)^{\mathrm{T}}$，$d_0 = -G^{-1}g_0 = (3,-3)^{\mathrm{T}}$，$\displaystyle\alpha_0 = -\frac{g_0^{\mathrm{T}}d_0}{d_0^{\mathrm{T}}Gd_0} = 1$，$x^{(1)}=x^{(0)}+\alpha_0 d_0 = (1,1)^{\mathrm{T}}$，由于$G$是正定二次函数，一步迭代达到最优解，$(1,1)^{\mathrm{T}}$就是极小点.
+    \item 设(1)\,$\displaystyle f(x)=\frac{1}{2}(x_1^2+9x_2^2)$, (2)\,$\displaystyle f(x)=\frac{1}{2}(x_1^2+10^4x_2^2)$. 试讨论最速下降法的收敛速度.\\
+    \sol 显然(1), (2)都是正定二次函数，故一定都是线性收敛速度，而
+    \[C_1 = \frac{\sqrt{9}(9-1)}{9+1} = 2.4, C_2 = \frac{\sqrt{10^4}(10^4 - 1)}{10^4 + 1} = 99.98 > C_1,\]
+    所以(1)的收敛速度快于(2).
+    \item 设$\displaystyle f(x)=\frac{1}{2}x^\mathrm{T}x+\frac{1}{4}\sigma(x^\mathrm{T}Ax)$，其中\[A=\begin{bmatrix}
+        5 & 1 & 0 & \displaystyle \frac{1}{2}\\
+        1 & 4 & \displaystyle \frac{1}{2} & 0\\
+        0 & \displaystyle \frac{1}{2} & 3 & 0\\
+        \displaystyle \frac{1}{2} & 0 & 0 & 2
+    \end{bmatrix}\]
+    设\begin{enumerate}[label=(\arabic*)]
+        \item $x_0=(\cos 70^\circ,\sin 70^\circ,\cos 70^\circ,\sin 70^\circ)^\mathrm{T},$
+        \item $x_0=(\cos 50^\circ,\sin 50^\circ,\cos 50^\circ,\sin 50^\circ)^\mathrm{T},$
+    \end{enumerate}
+    试在$\sigma=1$和$\sigma = 10^4$的情况下讨论基本牛顿法、线性搜索牛顿法和牛顿型信赖域方法的数值结果和收敛性态.\\
+    \omitted
+    \item 证明：当极小化正定二次函数时，共扼梯度法FR公式，PRP公式和Dixon公式是等价的.\\
+    \pro 先证FR与PRP公式等价，即$g_k^\mathrm{T}(g_k-g_{k-1})=g_k^\mathrm{T}g_k$，即证$g_k^\mathrm{T}g_{k-1}=0$.\\
+    $\because d_{k-1}=-g_{k-1}+\beta_{k-2}d_{k-2}, \therefore g_{k-1} = -d_{k-1}+\beta_{k-2}d_{k-2}$.\\
+    \begin{align*}
+        g_k^{\mathrm{T}}g_{k-1} & = g_k^{\mathrm{T}}(-d_{k-1}+\beta_{k-2}d_{k-2})\\
+        & = -g_k^{\mathrm{T}}d_{k-1}+\beta_{k-2}g_k^{\mathrm{T}}d_{k-2}
+    \end{align*}
+    由精确线搜索：$g_k^{\mathrm{T}}d_{k-1} = g_k^{\mathrm{T}}d_{k-2} = 0$，所以$g_k^\mathrm{T}g_{k-1}=0$，FR与PRP公式等价.\\
+    再证FR与Dixon公式等价，即$g_{k-1}^\mathrm{T}g_{k-1}=-d_{k-1}^\mathrm{T}g_{k-1}$.\\
+    $\because d_{k-1}=-g_{k-1}+\beta_{k-2}d_{k-2}, \therefore -d_{k-1}^\mathrm{T}g_{k-1} = g_{k-1}^\mathrm{T}g_{k-1}-\beta_{k-2}d_{k-2}^\mathrm{T}g_{k-1}$.\\
+    由精确线搜索：$d_{k-2}^{\mathrm{T}}g_{k-1} = g_{k-1}^{\mathrm{T}}d_{k-2} = 0$，所以$g_{k-1}^\mathrm{T}g_{k-1}=-d_{k-1}^\mathrm{T}g_{k-1}$，FR与Dixon公式等价.\\
+    所以，当极小化正定二次函数时，共扼梯度法FR公式，PRP公式和Dixon公式是等价的.
+    \item 用FR共扼梯度法解极小化问题\[\min f(x_1,x_2)=1+x_1-x_2+x_1^2+2x_2^2.\]
+    \sol 初始点取$(0,0)^\mathrm{T}$，化为标准形式$\displaystyle f(x)=\frac{1}{2}x^\mathrm{T}Gx-b^\mathrm{T}x-c$，其中$\displaystyle G=\left(\begin{array}{cc}
+        \begin{matrix}
+            2 & 0 \\ 0 & 4
+        \end{matrix}
+    \end{array}\right),b=\left(\begin{array}{cc}
+        \begin{matrix}
+            -1 \\ 1
+        \end{matrix}
+    \end{array}\right),g(x)=\nabla f(x)=(1+2x_1,4x_2-1)^\mathrm{T}$，则
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\displaystyle r_0=g_0=(1,-1)^\mathrm{T},d_0=-r_0=(-1,1)^\mathrm{T},\alpha_0=\frac{r_0^\mathrm{T}r_0}{d_0^\mathrm{T}Gd_0}=\frac{1}{3},x^1=x^0+\alpha_0d_0=\left(-\frac{1}{3},\frac{1}{3}\right)^\mathrm{T} \Rightarrow r_1=g_1=\left(\frac{1}{3},\frac{1}{3}\right)^\mathrm{T}$.
+        \item $\displaystyle \beta_0=\frac{r_1^\mathrm{T}r_1}{r_0^\mathrm{T}r_0}=\frac{1}{9} \Rightarrow d_1=-r_1+\beta_0d_0=\left(-\frac{4}{9},-\frac{2}{9}\right)^\mathrm{T},\alpha_1=\frac{r_1^\mathrm{T}r_1}{d_1^\mathrm{T}Gd_1}=\frac{3}{8},x^2=\left(-\frac{1}{2},\frac{1}{4}\right)^\mathrm{T} \Rightarrow r_2=g_2=(0,0)^\mathrm{T}$.
+    \end{enumerate}
+    所以，$\displaystyle x^2=\left(-\frac{1}{2},\frac{1}{4}\right)^\mathrm{T}$是极小点，$\displaystyle \min f(x)=\frac{5}{8}$.
+    \item 设$s \in \textbf{R}^n,s \neq 0,I$是$n \times n$单位矩阵. 证明：\[\left\|I-\frac{ss^\mathrm{T}}{s^\mathrm{T}s}\right\|=1.\]
+    \omitted
+    \item 证明逆的秩—校正公式(Sherman-Morrison公式)：设$A \in \textbf{R}^{n \times n}$非奇异，$u,v \in \textbf{R}^n$是任意向量，若$I+v^\mathrm{T}Au \neq 0$，则$A+uv^\mathrm{T}$非奇异，且其逆矩阵可以表示为\[(A+uv^\mathrm{T})^{-1}=A^{-1}-\frac{A^{-1}uv^\mathrm{T}A^{-1}}{1+v^\mathrm{T}A^{-1}u}.\]
+    \pro \begin{align*}
+        \left(A^{-1}-\frac{A^{-1}uv^\mathrm{T}A^{-1}}{1+v^\mathrm{T}A^{-1}u}\right)(A+uv^\mathrm{T}) & =I+A^{-1}uv^\mathrm{T}-\frac{A^{-1}uv^\mathrm{T}}{1+v^\mathrm{T}A^{-1}u}-\frac{A^{-1}uv^\mathrm{T}A^{-1}uv^\mathrm{T}}{1+v^\mathrm{T}A^{-1}u} \\
+        & = I+A^{-1}uv^\mathrm{T}-\frac{A^{-1}uv^\mathrm{T}}{1+v^\mathrm{T}A^{-1}u}-\frac{(v^\mathrm{T}A^{-1}u)A^{-1}uv^\mathrm{T}}{1+v^\mathrm{T}A^{-1}u} \\
+        & = I + \frac{(1+v^\mathrm{T}A^{-1}u)A^{-1}uv^\mathrm{T}-A^{-1}uv^\mathrm{T}-(v^\mathrm{T}A^{-1}u)Auv^\mathrm{T}}{1+v^\mathrm{T}A^{-1}u} = I
+    \end{align*}
+    证毕.
+    \item 证明Wolfe条件(3.5.5)和强Wolfe条件(3.5.9)意味着$s_k^\mathrm{T}y_k>0$.\\
+    \omitted
+    \item \begin{enumerate}[label=(\arabic*)]
+        \item 证明公式(4.4.23)和公式(4.4.24)是互逆的.
+        \item 证明公式(4.4.26)和公式(4.4.27)是互逆的.
+    \end{enumerate}
+    \pro
+    \begin{enumerate}[label=(\arabic*)]
+        \item 利用$B_{k+1}s_k=y_k$和$H_{k+1}y_k=s_k$，在公式(4.4.23)中互换$s_k$和$y_k$，并用$B_{k+1}$和$B_k$分别取代$H_{k+1}$和$H_k$，就能得到公式(4.4.24).
+        \item 利用Sherman-Morrison公式，以及上一问的思路，即可证明公式(4.4.26)和公式(4.4.27)是互逆的.
+    \end{enumerate}
+    \item 分别用最速下降法、共轭梯度法、牛顿法和拟牛顿法极小化Rosenbrock函数$f(x)=100(x_2-x_1^2)^2+(1-x_1)^2,x^{(0)}=(-1.2,1)^\mathrm{T},x^*=(1,1)^\mathrm{T},f(x^*)=0$.\\
+    \sol 可使用Matlab求解，并且四种方法均可以迭代收敛到最优解$x^*=(1,1)^\mathrm{T}$.
+    \item 分别用共轭梯度法和拟牛顿法极小化Powell奇异函数\[f(x)=(x_1+10x_2)^2+5(x_3-x_4)^2+(x_2-2x_3)^4+10(x_1-x_4)^4,\]
+    初始点$x^{(0)}=(3,-1,0,1)^\mathrm{T}$，解为$x^*=(0,0,0,0)^\mathrm{T},f(x^*)=0$.\\
+    \sol 可使用Matlab求解：\\
+    共轭梯度法：$x^*=(0.0468,-0.0047,0.0215,0.0217)^{\mathrm{T}}$；\\
+    拟牛顿法：$x^*=(0.0468,-0.0047,0.0215,0.0217)^{\mathrm{T}}$.
+    \item 证明(4.3.29)和(4.3.32).\\
+    \pro 见书本151页定理4.3.6证明.
+    \item 试推导预处理共轭梯度法.\\
+    \sol 见课本154页.
+    \item 推导(4.4.25).\\
+    \sol 利用Sherman-Morrison公式，并两次运用即可得到(4.4.25).
+    \item 证明拟牛顿方向是椭球范数$\|\cdot\|_{B_k}$意义下的最速下降方向.\\
+    \pro 首先求方向导数的下界
+    \[\frac{\mathrm{d}\,f}{\mathrm{d}\,a}=\frac{g^\mathrm{T}a}{\|a\|}=-\frac{-g^\mathrm{T}G^{-1}Ga}{\|a\|} \geqslant -\frac{\|G^{-1}g\|\times\|a\|}{\|a\|}=-\|G^{-1}g\|,\]
+    当且仅当$a=G^{-1}g$时，
+    \[\frac{\mathrm{d}\,f}{\mathrm{d}\,a}=\frac{g^\mathrm{T}a}{\|a\|}=-\frac{-g^\mathrm{T}G^{-1}Ga}{\|a\|}=-\frac{(-G^{-1}g)^\mathrm{T}G(-G^{-1}g)}{\|a\|}=-\frac{\|a\|^2}{\|a\|}=-\|a\|=-\|G^{-1}g\|,\]
+    方向导数达到下界，则拟牛顿方向是椭球范数$\|\cdot\|_{B_k}$意义下的最速下降方向.\\
+    或者见课本160-161页.
+\end{enumerate}
+\clearpage

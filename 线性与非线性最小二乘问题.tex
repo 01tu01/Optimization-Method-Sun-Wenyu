@@ -1,0 +1,86 @@
+\section{线性与非线性最小二乘问题}
+\begin{enumerate}
+    \item 设$A$是$m \times n$矩阵，证明$A^{\mathrm{T}}A$的条件数是$A$的条件数的平方，即$\kappa(A^{\mathrm{T}}A)=[\kappa(A)]^2$.\\
+    \omitted ($A$应该是方阵)
+    \item 设$\displaystyle f(x)=\frac{1}{2}\sum_{i=1}^5 r_i(x)^2$，其中
+    \[\begin{array}{ll}
+        r_1(x)=x_1^2+x_2^2+x_3^2-1,\\
+        r_2(x)=x_1^2+x_2^2+(x_3-2)^2-1,\\
+        r_3(x)=x_1+x_2+x_3-1,\\
+        r_4(x)=x_1+x_2-x_3+1,\\
+        r_5(x)=x_1^3+3x_2^2+(5x_3-x_1+1)^2-36,
+    \end{array}\]
+    通过计算$r(x)$的雅可比矩阵确定$\nabla f(x),M(x)=A(x)^{\mathrm{T}}A(x)$以及$\nabla^2f(x)$. 在点$x=(0,0,1)^{\mathrm{T}}$是否有$M(x)=\nabla^2f(x)$成立？为什么？\\
+    \omitted
+    \item 设$\displaystyle f(x)=\frac{1}{2}\sum_{i=1}^4 r_i(x)^2,r_i(x)=x_1\mathrm{e}^{-x_2t_i}-y_i,i=1,2,3,4$，其中$t_1=-1,t_2=0,t_3=1,t_4=2,y_1=2.7,y_2=1,y_3=0.4,y_4=0.1$.
+    \begin{enumerate}[label=(\arabic*)]
+        \item 以$x^{(1)}=(1,1)^{\mathrm{T}}$为初始点，计算进行一次Gauss-Newton迭代所得的点$x^{(2)}$;
+        \item 在点$x^{(2)}$还是用矩阵$A_1(x)^{\mathrm{T}}A_1(x)$进行一次近似的Gauss-Newton迭代得点$x^{(3)}$. 由这三个点估计方法对此问题的线性收敛速度.
+    \end{enumerate}
+    \omitted
+    \item 设$\delta^{(1)}$和$\delta^{(2)}$分别是方程组\[(A^{\mathrm{T}}A+\mu_1I)\delta=-A^{\mathrm{T}}r,i=1,2\]对应于$\mu_1$和$\mu_2$的解，其中$\mu_1>\mu_2>0,A \in \textbf{R}^{n \times n}, r \in \textbf{R}^m$. 证明\[q(\delta^{(2)})>q(\delta^{(1)}),\]这里$\displaystyle q(\delta)=\frac{1}{2}\|A\delta+r\|^2=\frac{1}{2}\delta^{\mathrm{T}} A^{\mathrm{T}} A \delta+r^{\mathrm{T}} A^{\mathrm{T}} \delta+\frac{1}{2}r^{\mathrm{T}} r$.\\
+    \omitted
+    \item 设$f(x)=x_1^4+x_1x_2+(1+x_2)^2,x^{(1)}=(0,0)^{\mathrm{T}}$，确定参数$\mu$的一个下界$\bar{\mu}$使得$\nabla^2 f(x^{(1)})+\mu I$在$\mu>\bar{\mu}$时是正定的. 令$\mu_1=1$，确定方程组\[(\nabla^2 f(x^{(1)})+\mu_1 I)\delta = -\nabla f(x^{(1)})\]的解$\delta^{(1)}$，并验证有$f(x^{(1)}+\delta^{(1)})<f(x^{(1)})$.\\
+    再验证只有当$\mu \geqslant 0.9$时所得的解$\delta^{(1)}$才能使$f(x)$在$x^{(1)}+\delta^{(1)}$处的函数值小于点$x^{(1)}$处的函数值，而最优的下降量在$\mu=1.2$时近似取得.\\
+    \omitted
+    \item 设$A \in \textbf{R}^{m \times m},\nabla f=b \in \textbf{R}^n,\mu \geqslant 0,\delta^{(1)}$满足下述方程组\[(A^{\mathrm{T}}A+\mu I)\delta=-b,\|\delta\| \leqslant \Delta.\]证明：
+    \begin{enumerate}[label=(\arabic*)]
+        \item 如果$\mu=0$，则$\delta^{(1)}$是下述信赖域子问题(TR)的解;
+        \[\begin{cases}
+            \min & \displaystyle q(\delta)=f+\nabla f^{\mathrm{T}}\delta+\frac{1}{2}\delta^{\mathrm{T}} A^{\mathrm{T}} A \delta\\
+            \text{s.t.} & \|\delta\| \leqslant \Delta;
+        \end{cases}\]
+        \item 如果$\mu \geqslant 0$且有$\|\delta^{(1)}\|=\Delta$，则$\delta^{(1)}$也是子问题(TR)的解;
+        \item 如果$\mu > 0$，则$\delta^{(1)}$还是子问题(TR)的唯一解.
+    \end{enumerate}
+    \omitted
+    \item 设$d \in \textbf{R}^n$为一满足\[d^{\mathrm{T}} \nabla f \leqslant -c_1 \|d\|\|\nabla f\|\]的下降方向，其中$c_1 \in (0,1]$. 又设$\bar{\delta}$是问题6中信赖域子问题(TR)的一个近似解，满足\[\text{Pred}(\bar{\delta})=f-q(\bar{\delta})\geqslant f-\min\{f+\alpha d^{\mathrm{T}} \nabla f+\frac{1}{2}\alpha^2 d^{\mathrm{T}} A^{\mathrm{T}} A d \, | \, \|\alpha d\| \leqslant \Delta\}.\]证明：
+    \[\text{Pred}(\bar{\delta}) \geqslant \frac{c_1}{2}\|\nabla f\| \min\left\{\Delta, c_1\frac{\|\nabla f\|}{\|A^{\mathrm{T}} A\|}\right\}.\]
+    \omitted
+    \item 设\[q(\delta)=\frac{1}{2}\delta^{\mathrm{T}}G\delta+b^{\mathrm{T}}\delta,\]其中\[G=\begin{bmatrix}
+        14 & 1\\1 & 2
+    \end{bmatrix},\qquad b=(6 \quad 2)^{\mathrm{T}}.\]
+    分别计算$q(\delta)$沿最速下降方向的最优修正，记为$\delta_{cp}$，以及由方程组\[D\delta=-b\]所确定的牛顿修正，记为$\delta_N$. 验证有$\|\delta_N\| > \|\delta_{cp}\|$.\\
+    令$\delta(\lambda)=\delta_{cp}+\lambda(\delta_N-\delta_{cp})$，确定$\lambda \in (0,1)$的一个值使得$\|\delta(\lambda)\|=1$.\\
+    \omitted
+    \item 考虑线性等式约束的线性最小二乘问题\[\begin{cases}
+        \min & \displaystyle \frac{1}{2}\|Ax-b\|_2^2\\
+        \text{s.t.} & Cx=y,
+    \end{cases}\]其中$x \in \textbf{R}^n,A \in \textbf{R}^{m \times n},b \in \textbf{R}^m, C \in \textbf{R}^{p \times n}$和$y \in \textbf{R}^p,p<n$. 设$\rank(A)=n,\rank(C)=p$，证明$x^* \in \textbf{R}^n$是问题唯一解的充分必要条件为存在Lagrange乘子$\lambda^*$使得$(x^*,\lambda^*)$是问题的Lagrange方程组的解，并验证$x^*,\lambda^*$由(5.2.18)和(5.2.19)给出.\\
+    \omitted
+    \item 对于问题9，如果矩阵$A$不满秩，证明问题的解集合为\[\mathcal{S}=\{(AE)^+(b-AC^+y)+C^+y+(I-(AE)^+A\xi )\, | \, \xi \in \mathcal{N}(C)\},\]而目标函数的最优值为\[\|(I_A(AE)^+)(AC^+y-b)\|,\]其中$E=I-C^+C$，$\mathcal{N}(C)$是矩阵$C$的零空间，$C^+$是矩阵$C$的广义逆，$(AE)^+$是矩阵$AE$的广义逆.\\
+    \omitted
+    \item 设\[C^{\mathrm{T}}=QR=[V_1 \,\, V_2]\begin{bmatrix}
+        R_1^{\mathrm{T}}\\0
+    \end{bmatrix},\]其中$Q=[V_1 \,\, V_2]$为一$n \times n$正交矩阵，$V_1 \in \textbf{R}^{n \times p},V_2 \in \textbf{R}^{n \times (n-p)}$. 假定Lagrange矩阵\[\begin{bmatrix}
+        A^{\mathrm{T}}A & -C^{\mathrm{T}} \\ C & 0
+    \end{bmatrix}\]非奇异，证明：
+    \begin{enumerate}[label=(\arabic*)]
+        \item 矩阵$C$满秩;
+        \item 矩阵$V_2^{\mathrm{T}}A^{\mathrm{T}}AV_2$非奇异.
+    \end{enumerate}
+    \omitted
+    \item 证明由(5.3.4)定义的Gauss-Newton方向是下降方向.\\
+    \omitted
+    \item 设$r_c=r(x^{(c)}),A_c=A(x^{(c)})$满秩，$S_c=S(x^{(c)})=\sum_{i=1}^m r_i((x^{(c)})) \nabla^2 r_i((x^{(c)})),\delta_c^G=-(A_c^{\mathrm{T}}A_c)^{-1}A_c^{\mathrm{T}}r_c,$\\$\delta_c^N=-(A_c^{\mathrm{T}}A_c+S_C)^{-1}A_c^{\mathrm{T}}r_c$. 证明\[\delta_c^G-\delta_c^N=(A_c^{\mathrm{T}}A_c)^{-1}S_c\delta_c^{(k)}.\]设$x_c$充分接近$\displaystyle f(x)=\frac{1}{2}\sum_{i=1}^m r_i(x)^2$的最优解$x^*$，$f(x)$的Hesse矩阵$\nabla^2 f(x)=A(x)^{\mathrm{T}}A(x)+S(x)$在点$x^*$非奇异，在点$x^*$的领域内Lipschitz连续，利用上述关系式证明\[\|x_c^G-x^*\| \leqslant \|(A_c^{\mathrm{T}}A_c)^{-1}\| \|S_c\| \|x_c-x^*\|+O(\|x_c-x^*\|^2),\]其中$x_c^G=x_c+\delta_c^G$.\\
+    \omitted
+    \item 已知$r \in \textbf{R}^m, A \in \textbf{R}^{m \times n},\mu>0$. 证明$\delta=-(A^{\mathrm{T}}A+\mu I)^{-1}A^{\mathrm{T}}r$是下述最小二乘问题的解\[\min \, \|J\delta+y\|^2,\]其中\[J=\begin{bmatrix}
+        A \\ \mu^{\frac{1}{2}}I
+    \end{bmatrix}, \quad y=\begin{bmatrix}
+        r\\0
+    \end{bmatrix}.\]
+    \omitted
+    \item 考虑非线性最小二乘问题\[\min \, f(x)=\frac{1}{2}\sum_{i=1}^m r_i(x)^2,\]并假定$r(x)$的Jacobian矩阵$A(x)$对所有$x \in \textbf{R}^n$都满秩，用$\delta^G,\delta^{LM}(\mu)$和$\delta^S$分别表示在点$x$的Gauss-Newton方向，Levenberg-Marquardt方向和最速下降方向，即有
+    \[\begin{array}{cc}
+        \delta^G=(A^{\mathrm{T}}A)^{-1}A^{\mathrm{T}}r,\\
+        \delta^{LM}(\mu)=(A^{\mathrm{T}}A+\mu I)^{-1}A^{\mathrm{T}}r,\\
+        \delta^S=-A^{\mathrm{T}}r.
+    \end{array}\]
+    证明
+    \[\begin{array}{cc}
+        \lim\limits_{\mu \to 0}\delta^{LM}(\mu)=\delta^G,\\
+        \displaystyle\lim\limits_{\mu \to \infty} \frac{\delta^{LM}(\mu)}{\|\delta^{LM}(\mu)\|}=\frac{\delta^S}{\|\delta^S\|}.
+    \end{array}\]
+    \omitted
+\end{enumerate}
+\clearpage

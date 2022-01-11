@@ -1,0 +1,305 @@
+\section{线性规划}
+\begin{enumerate}
+    \item 用图解法确定下述线性规划问题的最优解.
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\begin{cases}
+            \min & 8x_1+5x_2\\
+            \text{s.t.} & -x_1+x_2 \geqslant 0,\\
+            & 6x_1+11x_2 \geqslant 66,\\
+            & 2x_1+x_2 \geqslant 10,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \max & 2x_1+3x_2\\
+            \text{s.t.} & -x_1+2x_2 \geqslant 12,\\
+            & -2x_1+x_2 \geqslant 3,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \min & 4x_1-3x_2\\
+            \text{s.t.} & -11x_1+10x_2 \leqslant 20,\\
+            & x_1 \geqslant 0, 0 \leqslant x_2 \leqslant 6.
+        \end{cases}$
+    \end{enumerate}
+    \sol
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\displaystyle\min=\frac{89}{2},x_1=\frac{11}{4},x_2=\frac{9}{2}.$
+        \item 无界解.
+        \item $\displaystyle\min=-6,x_1=0,x_2=2.$
+    \end{enumerate}
+    \item 确定由下述约束条件所形成的可行域的所有顶点，并计算函数$f(x)$在这些顶点的函数值.
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\begin{array}{ll}
+            f(x)=3x_1+2x_2,\\x_1+x_2 \leqslant 3,\\x_1-2x_2 \leqslant 4,\\
+            0 \leqslant x_1 \leqslant 4, \\ 0 \leqslant x_2 \leqslant 1.
+        \end{array}$
+        \item $\begin{array}{ll}
+            f(x)=-4x_1-3x_2,\\2x_1+x_2 \leqslant 10,\\x_1+x_2 \leqslant 10,\\
+            5x_1+3x_2 \leqslant 20, \\ x_1 \geqslant 0, x_2 \geqslant 0.
+        \end{array}$
+    \end{enumerate}
+    \sol
+    \begin{enumerate}[label=(\arabic*)]
+        \item $f[(0,0)]=0,f[(0,1)]=2,f[(2,1)]=8,f[(3,0)]=9.$
+        \item $f[(0,0)]=0,f[(0,10)]=-30,f[(5,0)]=-20.$
+    \end{enumerate}
+    \item 将下列线性规划问题转化成标准形.
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\begin{cases}
+            \max & 2x_1-x_2-3x_3\\
+            \text{s.t.} & 2x_1-x_2+2x_3 \leqslant 2,\\
+            & -x_1+2x_2-3x_3 \leqslant -2,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0, x_3 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \min & 2x_1-x_2-3x_3-x_4\\
+            \text{s.t.} & x_1+3x_2+2x_3+x_4 \leqslant 15,\\
+            & 2x_2+x_3+x_4 = 10,\\
+            & -x_1+5x_2-2x_3+2x_4 \geqslant 3,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0, x_3 \geqslant 0, x_4 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \max & 3x_1-13x_2\\
+            \text{s.t.} & 5x_1+3x_2 \leqslant 18,\\
+            & x_1+2x_2 \geqslant 9,\\
+            & 2x_1+5x_2 \geqslant 3,\\
+            & 2x_1 + x_2 \geqslant 2.5,\\
+            & x_1 \geqslant 0.
+        \end{cases}$
+    \end{enumerate}
+    \sol
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\begin{cases}
+            \min & 2y_1-2y_2\\
+            \text{s.t.} & 2y_1-y_2 \geqslant 2,\\
+            & -y_1+2y_2 \geqslant -1,\\
+            & 2y_1-3y_2 \geqslant -3,\\
+            & y_1 \leqslant 0, y_2 \leqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \max & 15y_1+10y_2+3y_3\\
+            \text{s.t.} & y_1-y_3 \leqslant 2,\\
+            & 3y_1+2y_2+5y_3 \leqslant -1,\\
+            & 2y_1+y_2-2y_3 \leqslant -3,\\
+            & y_1+y_2+2y_3 \leqslant -1,\\
+            & y_1 \leqslant 0, y_3 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \min & 18y_1+9y_2+3y_3+2.5y_4\\
+            \text{s.t.} & 5y_1+y_2+2y_3+2y_4 \geqslant 3,\\
+            & 3y_1+2y_2+5y_3+y_4 = -13,\\
+            & y_1 \geqslant 0, y_2 \leqslant 0, y_3 \leqslant 0, y_4 \leqslant 0.
+        \end{cases}$
+    \end{enumerate}
+    \item 用单纯形表的方法求下列线性规划问题的最优解.
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\begin{cases}
+            \max & 5x_1+6x_2+4x_3\\
+            \text{s.t.} & 2x_1+2x_2 \leqslant 5,\\
+            & 5x_1+3x_2+4x_3 \leqslant 15,\\
+            & x_1+x_2 \leqslant 10,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0, x_3 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \min & 3x_1-2x_2+x_3\\
+            \text{s.t.} & 2x_1+2x_2-x_3 \leqslant 2,\\
+            & -3x_1-x_2+2x_3 \leqslant -2,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0, x_3 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \max & 4x_1+2x_2+10x_3+x_4+2x_5\\
+            \text{s.t.} & 5x_1+3x_2+2x_3+x_4-x_5 \leqslant 32,\\
+            & x_1+2x_2+3x_3+4x_4+4x_5 \leqslant 10,\\
+            & x_i \geqslant 0, i=1,2,3,4,5.
+        \end{cases}$
+    \end{enumerate}
+    \sol
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\displaystyle\max=\frac{89}{2},x_1=0,x_2=\frac{5}{2},x_3=\frac{15}{8}.$
+        \item $\displaystyle\min=\frac{1}{2},x_1=\frac{1}{2},x_2=\frac{1}{2},x_3=0.$
+        \item $\displaystyle\max=\frac{484}{13},x_1=\frac{76}{13},x_2=0,x_3=\frac{18}{13},x_4=0,x_5=0.$
+    \end{enumerate}
+    \item 叙述单纯形法的最优解形式和无界解形式.\\
+    \sol 见教材65-66页的式(2.2.14)和(2.2.15).
+    \item 考察下述单纯形表
+    \begin{center}
+        \begin{tabular}{ccccccc}
+            基变量 & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & 右端项\\ \hline
+            $-f$ & 0 & $b$ & $e$ & 0 & 0 & $-9$\\ \hline
+            $x_1$ & 1 & $c$ & 1 & 0 & 0 & 3\\
+            $x_4$ & 0 & $d$ & $-1$ & 1 & 0 & 2\\
+            $x_5$ & 0 & $-1$ & 1 & 0 & 1 & 4\\ \hline
+        \end{tabular}
+    \end{center}
+    问：参数$b,c,d,e$满足什么条件才能使得
+    \begin{enumerate}[label=(\arabic*)]
+        \item 单纯形表是最优解形式?
+        \item 单纯形表是无界解形式?
+    \end{enumerate}
+    \sol
+    \begin{enumerate}[label=(\arabic*)]
+        \item $b \geqslant 0, e \geqslant 0,c \in \textbf{R}, d \in \textbf{R}.$
+        \item $b<0,c \leqslant 0, d \leqslant 0, e \in \textbf{R}.$
+    \end{enumerate}
+    \item 用修正单纯形方法求下列问题的解.
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\begin{cases}
+            \min & -3x_1+2x_2-x_3-x_4\\
+            \text{s.t.} & 2x_1+x_2+x_3+3x_4 \leqslant 20,\\
+            & x_1+x_3+2x_4 = 10,\\
+            & -2x_1-x_2+2x_3+5x_4 \geqslant 3,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0, x_3 \geqslant 0, x_4 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \max & 2x_1-x_2-3x_3\\
+            \text{s.t.} & 2x_1-x_2+2x_3 \leqslant 2,\\
+            & -x_1+2x_2-3x_3 \leqslant -2,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0, x_3 \geqslant 0.
+        \end{cases}$
+    \end{enumerate}
+    \sol
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\displaystyle\min=-\frac{37}{2},x_1=\frac{17}{4},x_2=0,x_3=\frac{23}{4},x_4=0.$
+        \item $\displaystyle\max=-8,x_1=0,x_2=2,x_3=2.$
+    \end{enumerate}
+    \item 考察下列线性规划问题
+    \[\begin{cases}
+        \min & \displaystyle-\frac{3}{4}x_1+150x_2-\frac{1}{50}x_3+6x_4\\
+        \text{s.t.} & \displaystyle\frac{1}{4}x_1-60x_2-\frac{1}{25}x_3 = 9x_4 \leqslant 0,\\
+        & \displaystyle\frac{1}{2}x_1-90x_2-\frac{1}{50}x_3+3x_4 \leqslant 0,\\
+        & x_3 \leqslant 1,\\
+        & x_1 \geqslant 0, x_2 \geqslant 0, x_3 \geqslant 0, x_4 \geqslant 0.
+    \end{cases}\]
+    \begin{enumerate}[label=(\arabic*)]
+        \item 引入松弛变量将其化成标准形后用单纯形方法进行迭代看是否出现循环的现象(在确定出基变量时如有多于一个指标使$b_j^{(k)}/\hat{a}_{jp}^{(k)}$取得最小值，取其中最先出现的变量作为出基变量).
+        \item 把Bland方法结合进单纯形方法进行单纯形迭代看能否求得问题的最优解.
+    \end{enumerate}
+    \omitted
+    \item 给出下列线性规划问题的对偶
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\begin{cases}
+            \max & x_1\\
+            \text{s.t.} & -4x_1+3x_3 \geqslant 0,\\
+            & 2x_2+5x_3 \leqslant 0,\\
+            & 6x_1+7x_2=0,\\
+            & x_2 \geqslant 0, x_3 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \min & 2x_1-5x_2+3x_3-6x_4\\
+            \text{s.t.} & -8x_1+7x_2+3x_3+4x_4 = 11,\\
+            & 7x_1+6x_2+2x_3+3x_4 \geqslant 23,\\
+            & 3x_1+2x_2+4x_3+7x_4 \leqslant 12,\\
+            & x_1 \leqslant 0, x_3 \geqslant 0, x_4 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \min & c^{\mathrm{T}}x\\
+            \text{s.t.} & Ax=b,\\
+            & l \leqslant x \leqslant u,
+        \end{cases}$
+        \\其中$l$和$u$是$x$的上下界向量.
+        \item $\begin{cases}
+            \min & c^{\mathrm{T}}x\\
+            \text{s.t.} & b_1 \leqslant Ax \leqslant b_2,\\
+            & x \geqslant 0,
+        \end{cases}$
+        \\其中$b_1$和$b_2$是$Ax \in \textbf{R}^{m}$的上下界向量.
+    \end{enumerate}
+    \sol
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\begin{cases}
+            \min & 0\\
+            \text{s.t.} & -4y_1+6y_3 = 1,\\
+            & 2y_2+7y_3 \geqslant 0,\\
+            & 3y_1+5y_2 \geqslant 0,\\
+            & y_1 \leqslant 0, y_2 \geqslant 0, y_3 \text{无限制}.
+        \end{cases}$
+        \item $\begin{cases}
+            \max & 11y_1+23y_2+12y_3\\
+            \text{s.t.} & -8y_1+7y_2+3y_3 \geqslant 2,\\
+            & 7y_1+6y_2+2y_3 = -5,\\
+            & 3y_1+2y_2+4y_3 \leqslant 3,\\
+            & 4y_1+3y_2+7y_3 \leqslant -6,\\
+            & y_1 \text{无限制}, y_2 \geqslant 0, y_3 \leqslant 0.
+        \end{cases}$
+        \item 设$c=(c_1,c_2,\cdots,c_n)^{\mathrm{T}},A=(a_1,a_2,\cdots,a_n)$，其中$a_i$是$m \times 1$的向量，则对偶问题为($y$是$(m+2) \times 1$的向量)
+        \[\begin{cases}
+            \max & (b^{\mathrm{T}},0,0)y\\
+            \text{s.t.} & (a_1^{\mathrm{T}},0,0)y = c_1,\\
+            & (a_2^{\mathrm{T}},0,0)y = c_2,\\
+            & \vdots\\
+            & (a_{n-2}^{\mathrm{T}},0,0)y = c_{n-2},\\
+            & (a_{n-1}^{\mathrm{T}},1,0)y = c_{n-1},\\
+            & (a_n^{\mathrm{T}},0,1)y = c_n,\\
+            & y_1,y_2,\cdots,y_m \text{无限制}, y_{m+1} \geqslant 0, y_{m+2} \leqslant 0.
+        \end{cases}\]
+        \item 设$c=(c_1,c_2,\cdots,c_n)^{\mathrm{T}},A=(a_1,a_2,\cdots,a_n)$，其中$a_i$是$m \times 1$的向量，则对偶问题为($y$是$2m \times 1$的向量)
+        \[\begin{cases}
+            \max & (b_1^{\mathrm{T}},b_2^{\mathrm{T}})y\\
+            \text{s.t.} & (a_1^{\mathrm{T}},a_1^{\mathrm{T}})y \leqslant c_1,\\
+            & (a_2^{\mathrm{T}},a_2^{\mathrm{T}})y \leqslant c_2,\\
+            & \vdots\\
+            & (a_n^{\mathrm{T}},a_n^{\mathrm{T}})y \leqslant c_m,\\
+            & y_1,y_2,\cdots,y_m \geqslant 0, y_{m+1},y_{m+2}\cdots,y_{2m} \leqslant 0.
+        \end{cases}\]
+    \end{enumerate}
+    \item 求下列线性规划问题的对偶
+    \[\begin{array}{ll}
+        \min & c^{\mathrm{T}}x\\
+        \text{s.t.} & Ax=b\\
+        & Bx \leqslant a,\\
+        & x \geqslant 0.
+    \end{array}\]
+    \sol 设$c=(c_1,c_2,\cdots,c_n)^{\mathrm{T}},A=(A_1,A_2,\cdots,A_n),B=(B_1,B_2,\cdots,B_n),b=(b_1,b_2,\cdots,b_m)^{\mathrm{T}},a=(a_1,a_2,\cdots,a_m)^{\mathrm{T}}$，其中$A_i$和$B_i$都是$m \times 1$的向量，则对偶问题为($y$是$2m \times 1$的向量)
+    \[\begin{cases}
+        \max & (b^{\mathrm{T}},a^{\mathrm{T}})y\\
+        \text{s.t.} & (A_1^{\mathrm{T}},B_1^{\mathrm{T}})y \leqslant c_1,\\
+        & (A_2^{\mathrm{T}},B_2^{\mathrm{T}})y \leqslant c_2,\\
+        & \vdots\\
+        & (A_n^{\mathrm{T}},B_n^{\mathrm{T}})y \leqslant c_m,\\
+        & y_1,y_2,\cdots,y_m \text{无限制}, y_{m+1},y_{m+2}\cdots,y_{2m} \leqslant 0.
+    \end{cases}\]
+    \item 用对偶单纯形方法求下列线性规划问题的解.
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\begin{cases}
+            \min & 9x_1+5x_2+3x_3\\
+            \text{s.t.} & 3x_1+2x_2-3x_3 \geqslant 3,\\
+            & 2x_1+x_3 \geqslant 5,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0, x_3 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \min & 3x_1+2x_2+4x_3\\
+            \text{s.t.} & 2x_1-x_2 \geqslant 5,\\
+            & 2x_2-x_3 \geqslant 10,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0, x_3 \geqslant 0.
+        \end{cases}$
+        \item $\begin{cases}
+            \max & -6x_1-5x_2-7x_3-2x_4\\
+            \text{s.t.} & -3x_1-2x_2+5x_3+4x_4 \geqslant 15,\\
+            & 6x_1-2x_2+2x_3+7x_4 \leqslant 35,\\
+            & -5x_1-4x_2-3x_3+2x_4 \geqslant 20,\\
+            & x_1 \geqslant 0, x_2 \geqslant 0, x_3 \geqslant 0, x_4 \geqslant 0.
+        \end{cases}$
+    \end{enumerate}
+    \sol
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\displaystyle\min=21,x_1=2,x_2=0,x_3=1.$
+        \item $\displaystyle\min=25,x_1=5,x_2=5,x_3=0.$
+        \item 无可行解.
+    \end{enumerate}
+    \item 将Klee-Minty问题转换成标准形，并对$m = 3$的情况用单纯形方法求解(要求取最负的价值系数的变量为入基变量). 如果在第一次迭代取第三个约束的松弛变量为入基变量，$x_3$为入基变量，结果又如何?\\
+    \omitted
+    \item \begin{enumerate}[label=(\arabic*)]
+        \item 设$\displaystyle \mu_{k+1}=\left(1-\frac{\gamma}{\sqrt{n}}\right)\mu_k,0<\gamma<1$. 给定$\mu_0 > 0,\varepsilon > 0$确定使$\mu_k \leqslant \varepsilon$成立所需要的迭代次数.
+        \item 估计原始对偶内点算法的每次迭代的运算工作量.
+    \end{enumerate}
+    \omitted
+    \item 用原始对偶内点算法求下述线性规划问题的解
+    \[\begin{cases}
+        \max & x_1+3x_2\\
+        \text{s.t.} & x_1+4x_2 \leqslant 10,\\
+        & x_1+2x_2 \leqslant 1,\\
+        & x_1 \geqslant 0, x_2 \geqslant 0.
+    \end{cases}\]
+    \sol $\displaystyle\max=\frac{3}{2},x_1=0,x_2=\frac{1}{2}.$
+\end{enumerate}
+\clearpage

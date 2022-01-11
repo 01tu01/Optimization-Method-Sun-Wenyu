@@ -1,0 +1,85 @@
+\usepackage{ctex}                   % 支持中文
+\usepackage{amsmath,amssymb}        % 支持数学公式
+\usepackage{geometry}               % 排版页边距
+\usepackage{pifont}                 % 带圈的数字
+\usepackage{extarrows}              % 支持x箭头系列
+\usepackage{mathrsfs}               % 支持大写花体字母
+\usepackage{color}                  % 支持颜色
+\usepackage{multirow}               % 支持合并单元格
+\usepackage{graphicx}               % 支持插图
+\usepackage{esint}                  % 支持环路积分符号
+\usepackage{multicol}               % 支持分栏
+\usepackage{listings}               % 支持代码块
+\usepackage{xcolor}                 % 支持颜色
+\usepackage{enumerate}              % 支持列举
+\usepackage{enumitem}               % 支持列举
+\usepackage{subfigure}              % 支持子图
+\usepackage{caption}                % 支持给图加标题
+\usepackage{url}                    % 支持输入网址
+\usepackage{titlesec}               % 支持titleformat
+\usepackage{float}                  % 支持分栏的时候插入图片的[H]
+\usepackage{epstopdf}
+\usepackage[hidelinks]{hyperref}    % 目录超链接功能，不加hidelinks会有红框
+% \usepackage{newtxtext}              % 支持正文Times New Roman字体
+% \usepackage{newtxmath}              % 支持数学公式Times New Roman字体
+
+% 清除页眉，保留页脚的页码编号
+\pagestyle{plain}
+% 更改页边距
+\geometry{left=19.1mm,right=19.1mm,top=25.4mm,bottom=25.4mm}
+% 更改摘要的页边距
+\makeatletter
+\renewenvironment{abstract}{%
+    \if@twocolumn
+      \section*{\abstractname}%
+    \else
+      \small
+      \begin{center}%
+        {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
+      \end{center}%
+    \fi}
+    {}
+\makeatother
+% 修改摘要的标题大小
+\renewcommand{\abstractname}{{\large 摘要}\\}
+% 更改section的自动编号方式、字体、居中，并设置为
+\titleformat*{\section}{\centering\Large\bf}
+\renewcommand\thesection{第\zhnum{section}章}
+% 更改网址url字体为空，即跟随主文字字体
+\def\UrlFont{}
+% 设置图片表格的caption为small，在本份文章中是五号
+% \captionsetup{font={small}}
+% 更改subsection的自动编号方式并设置字体大小
+\titleformat*{\subsection}{\normalsize\bf}
+\titleformat*{\subsubsection}{\normalsize\bf}
+\renewcommand\thesubsection{\arabic{section}.\arabic{subsection}}
+% 更改公式自动编号的方式
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+% 代码块设置
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\setmonofont{Consolas}
+\lstset{language = matlab, numbers=left,
+    breaklines=true, frame=false, numbersep=7pt,
+    showspaces=false,
+    columns=fullflexible,
+    numberstyle=\tiny, keywordstyle=\color{blue!70},
+    commentstyle=\color{mygreen},
+    rulesepcolor=\color{red!0!green!0!blue!0}, basicstyle=\ttfamily,
+    xleftmargin=1em, xrightmargin=1em, aboveskip=1em
+}
+% 更改公式自动编号的方式，并做到每重开一章，重新计数
+\makeatletter
+\@addtoreset{equation}{section}
+\makeatother
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+% 一个单元格内的内容自动换行
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+% 更改参考文献的命名形式
+\renewcommand{\refname}{\zhnum{section}、$\,\,$参考文献}
+% 引用时变上标
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+% 定义
+\newcommand{\sol}{{\heiti 解: }}
+\newcommand{\pro}{{\heiti 证: }}
+\newcommand{\omitted}{{\heiti 略.}}
+\newcommand{\rank}{\text{rank}}

@@ -1,0 +1,61 @@
+\section{二次规划}
+\begin{enumerate}
+    \item 解下面二次规划问题并且作图解释几何意义.
+    \[\begin{array}{lll}
+        \max & f(x)=2x_1+3x_2+4x_1^2+2x_1x_2+x_2^2\\
+        \mathrm{s.t.} & x_1-x_2 \geqslant 0,\\
+        & x_1+x_2 \leqslant 4,\\
+        & x_1 \leqslant 3.
+    \end{array}\]
+    \sol $\displaystyle \max=52,x_1=3,x_2=1.$
+    \item 从一点$x_0$的超平面$\{x|Ax=b\}$寻找最短距离能构成二次规划形式，这里$A$是行满秩矩阵
+    \[\begin{array}{lll}
+        \min & \displaystyle f(x)=\frac{1}{2}(x-x_0)^\mathrm{T}(x-x_0)\\
+        \mathrm{s.t.} & Ax=b.
+    \end{array}\]
+    证明最优乘子为\[\lambda^*=(AA^\mathrm{T})^{-1}(b-Ax_0)\]和最优解为\[x^*=x_0-A^\mathrm{T}(AA^\mathrm{T})^{-1}(b-Ax_0),\]
+    并且证明当$A$是行向量时，从$x_0$至$Ax = b$的可行解集的最短距离为\[\frac{|b-Ax_0|}{\|A\|}.\]
+    \textcolor{red}{[注意：最优解应为$x^*=x_0+A^\mathrm{T}(AA^\mathrm{T})^{-1}(b-Ax_0)$]}\\
+    \pro 令$A$是$m \times n$的矩阵，由于$A$是行满秩矩阵，则$\rank(A)=m$，而$\rank(AA^\mathrm{T})=\rank(A)=m$，则$AA^\mathrm{T}$是$m \times m$的可逆方阵.\\
+    本问题的Lagrange函数为$\displaystyle L(x;\lambda)=\frac{1}{2}(x-x_0)^\mathrm{T}(x-x_0)-\lambda^\mathrm{T}(Ax-b)$，则KKT条件为
+    \[\begin{cases}
+        (x-x_0)=A^\mathrm{T}\lambda\\
+        Ax=b
+    \end{cases}\]
+    于是，$AA^\mathrm{T}\lambda=A(x-x_0)=Ax-Ax_0=b-Ax_0$，而$AA^\mathrm{T}$是$m \times m$的可逆方阵，则$\lambda^*=(AA^\mathrm{T})^{-1}(b-Ax_0)$，再代入第一个KKT条件，得$x^*=x_0+A^\mathrm{T}(AA^\mathrm{T})^{-1}(b-Ax_0)$.\\
+    当$A$是行向量，即$m=1$时，
+    \begin{align*}
+        d^2 = \|x-x_0\|^2 & =(x-x_0)^\mathrm{T}(x-x_0)\\
+        &=(b-Ax_0)^\mathrm{T}\cdot \frac{1}{(AA^\mathrm{T})^2}AA^\mathrm{T}(b-Ax_0)\\
+        & = \frac{(b-Ax_0)^\mathrm{T}(b-Ax_0)}{AA^\mathrm{T}}
+    \end{align*}
+    因此，$\displaystyle d=\frac{|b-Ax_0|}{\|A\|}$. 证毕.
+    \item 证明(6.2.1)的一阶必要性条件是(6.2.2).\\
+    \omitted
+    \item 写出下面既有等式约束又有不等式约束的二次凸规划的KKT条件
+    \[\begin{array}{lll}
+        \min & \displaystyle q(x)=\frac{1}{2}x^\mathrm{T}Gx+x^\mathrm{T}g\\
+        \mathrm{s.t.} & Ax \geqslant b,\quad \bar{A}x=\bar{b}.
+    \end{array}\]
+    这里$G$是对称正半定矩阵，使用这些条件导出类似的原始—对偶步.\\
+    \omitted
+    \item 考虑二次规划
+    \[\begin{array}{lll}
+        \min & q(x)=6x_1+4x_2-13-x_1^2-x_2^2\\
+        \mathrm{s.t.} & x_1+x_2 \leqslant 3,\\
+        & x_1,x_2 \geqslant 0.
+    \end{array}\]
+    使用图解法求解，再使用有效约束集方法求解.\\
+    \sol $\displaystyle \min=-13,x_1=0,x_2=0.$
+    \item 用有效集方法求解二次规划问题
+    \[\begin{array}{lll}
+        \min & q(x)=x_1^2+2x_2^2-2x_1-6x_2-2x_1x_2-2\\
+        \mathrm{s.t.} & \displaystyle \frac{1}{2}x_1+\frac{1}{2}x_2 \leqslant 1,\\
+        & -x_1+2x_2 \leqslant 2,\\
+        & x_1,x_2 \geqslant 0.
+    \end{array}\]
+    \sol $\displaystyle \min=-\frac{46}{5},x_1=\frac{4}{5},x_2=\frac{6}{5}.$
+    \item 推导(6.2.24).\\
+    \omitted
+\end{enumerate}
+\clearpage

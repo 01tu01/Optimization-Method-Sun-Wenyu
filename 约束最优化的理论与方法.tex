@@ -1,0 +1,119 @@
+\section{约束最优化的理论与方法}
+\begin{enumerate}
+    \item 对于$x \in \textbf{R}$，证明函数$\min(z,0)^2$在$z=0$处有二阶不连续导数.\\
+    \pro 将这个函数记为$f(z)$，则$f(z)$可写为
+    \[f(z) = \begin{cases}
+        z^2, & z = 0\\
+        0, & z \neq 0
+    \end{cases},\quad\therefore
+    f''(z)=\begin{cases}
+        1, & z \neq 0\\+ \infty, & z\to 0^+\\-\infty, & z\to 0^-
+    \end{cases}\]
+    所以，函数$\min(z,0)^2$在$z=0$处有二阶不连续导数.
+    \item 考虑问题
+    \[\begin{array}{lll}
+        \min & \displaystyle \frac{1}{1+x^2}\\
+        \mathrm{s.t.} & x \geqslant 1,
+    \end{array}\]
+    写出$P(x;\mu)$.\\
+    \sol 对数障碍函数为
+    \[P(x;\mu)=\frac{1}{1+x^2}-\mu\log(x-1).\]
+    分数障碍函数为
+    \[P(x;\mu)=\frac{1}{1+x^2}-\frac{\mu}{x-1}.\]
+    \item 考虑问题
+    \[\begin{array}{lll}
+        \min & x\\
+        \mathrm{s.t.} & x^2 \geqslant 0,\\
+        & x+1 \geqslant 0,
+    \end{array}\]
+    解为$x^*=-1$，写出此问题的$P(x;\mu)$，寻找局部极小点.\\
+    \sol $P(x;\mu)=x-\mu\log(x^2)-\mu\log(x+1)$，则
+    \[\frac{\mathrm{d} P}{\mathrm{d} x}=1-\mu\frac{2x}{x^2}-\mu\frac{1}{x+1}=0,\]
+    解得\[x = \frac{3\mu-1 \pm \sqrt{(1-3\mu)^2+8\mu}}{2}(\text{由可行性舍去}-\text{的情况}),\]
+    令$\mu \to 0^+$，则$x=-1$.\\
+    也可以将$x^2 \geqslant 0$舍弃，因为这是个无效约束，则$P(x;\mu)=x-\mu\log(x+1)$，则
+    \[\frac{\mathrm{d} P}{\mathrm{d} x}=1-\mu\frac{1}{x+1}=0,\]
+    解得\[x=\mu-1,\]
+    令$\mu \to 0^+$，则$x=-1$.
+    \item 假设当前点$x_k$是$P(x;\mu_k)$的精确极小点，写出关于当前点$x_k$对于$P(x;\mu_{k+1})$的牛顿步.\\
+    \omitted
+    \item 试推导(7.4.24).\\
+    \omitted
+    \item 对附录中试验函数$2.1-2.3$分别用罚函数法和序列二次规划方法求解(用C,MATLAB或FORTRAN等语言编制程序).\\
+    \omitted
+\end{enumerate}
+\clearpage
+{\heiti 第七章：补充题目}
+\begin{enumerate}
+    \item 考虑约束最优化问题
+    \[\begin{array}{lll}
+        \min & (x_1-2)^2+x_2^2\\
+        \mathrm{s.t.} & x_1^2-x_2 \leqslant 0,\\
+        & x_1-x_2 \leqslant 0,
+    \end{array}\]
+    求出其KKT点并判断是否为其全局最优解.\\
+    \sol 本问题的KKT条件为
+    \[\begin{cases}
+        \left(\begin{array}{cc}
+            \begin{matrix}
+                2x_1-4 \\ 2x_2
+            \end{matrix}
+        \end{array}\right)=\lambda_1\left(\begin{array}{cc}
+            \begin{matrix}
+                -2x_1 \\ 1
+            \end{matrix}
+        \end{array}\right)+\lambda_2\left(\begin{array}{cc}
+            \begin{matrix}
+                -1 \\ 1
+            \end{matrix}
+        \end{array}\right)\\
+        \lambda_1 \geqslant 0, \lambda_2 \geqslant 0,\\
+        \lambda_1(x_1^2-x_2)=0,\lambda_2(x_1-x_2)=0.
+    \end{cases}\]
+    利用第三个KKT条件，可得以下情况：
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\lambda_1=0,\lambda_2=0,x_1=2,x_2=0$，不满足约束条件，不是KKT点.
+        \item $\lambda_1=0,x_1-x_2=0 \Rightarrow x_1=x_2=1,\lambda_2=2$，是KKT点.
+        \item $x_1^2-x_2=0,\lambda_2=0 \Rightarrow 2x_1^3+x_1-2=0$，令$g(x_1)=2x_1^3+x_1-2$，显然$g(x_1)$单调递增，而$g(0)=-2<0,g(1)=1>0$，于是$x_1 \in (0,1),x_2=x_1^2 < x_1$，不满足第二个约束，不是KKT点.
+        \item $x_1^2-x_2=0,x_1=x_2=0 \Rightarrow x^{(1)}=(0,0)^\mathrm{T},x^{(2)}=(1,1)^\mathrm{T}$，$x^{(2)}$就是情况(2)，$x^{(1)}$对应的$\lambda_1=-4,\lambda_2=4$不满足KKT条件，不是KKT点.
+    \end{enumerate}
+    由于这个问题是个凸规划，所以其KKT点就是全局最优解.
+    \item 考虑约束最优化问题
+    \[\begin{array}{lll}
+        \min & x_1^2+2x_2^2\\
+        \mathrm{s.t.} & x_1+x_2-1 \geqslant 0,
+    \end{array}\]
+    利用对数障碍函数法求解.\\
+    \sol 对数障碍函数$P(x;\mu)=x_1^2+2x_2^2-\mu\log(x_1+x_2-1)$，则
+    \[\begin{cases}
+        \displaystyle \frac{\partial P}{\partial x_1}=2x_1-\frac{\mu}{x_1+x_2-1}=0\\
+        \displaystyle \frac{\partial P}{\partial x_2}=4x_2-\frac{\mu}{x_1+x_2-1}=0
+    \end{cases}\]
+    解得
+    \[\left(\begin{array}{cc}
+        \begin{matrix}
+            x_1 \\ x_2
+        \end{matrix}
+    \end{array}\right)=\left(\begin{array}{cc}
+        \begin{matrix}
+            \displaystyle \frac{1+\sqrt{1+3\mu}}{3} \\ \displaystyle \frac{1+\sqrt{1+3\mu}}{6}
+        \end{matrix}
+    \end{array}\right),\quad\left(\begin{array}{cc}
+        \begin{matrix}
+            x_1 \\ x_2
+        \end{matrix}
+    \end{array}\right)=\left(\begin{array}{cc}
+        \begin{matrix}
+            \displaystyle \frac{1-\sqrt{1+3\mu}}{3} \\ \displaystyle \frac{1-\sqrt{1+3\mu}}{6}
+        \end{matrix}
+    \end{array}\right)(\text{不可行，舍去})\]
+    当$\mu \to 0^+$时，\[\left(\begin{array}{cc}
+        \begin{matrix}
+            x_1 \\ x_2
+        \end{matrix}
+    \end{array}\right)=\left(\begin{array}{cc}
+        \begin{matrix}
+            \displaystyle \frac{2}{3} \\ \displaystyle \frac{1}{3}
+        \end{matrix}
+    \end{array}\right).\]
+\end{enumerate}
